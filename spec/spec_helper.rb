@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "gager/core"
+require "support/webmock"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
