@@ -1,5 +1,5 @@
 RSpec.describe Gager::Core::Authorizer do
-  let(:authorizer) { described_class.new(client_id: "MyClientId", client_secret: "MyClientSecret", scope: "MyScope") }
+  let(:authorizer) { described_class.new("MyClientId", "MyClientSecret", "MyScope") }
 
   describe "#authorization_url" do
     subject { authorizer.authorization_url }
