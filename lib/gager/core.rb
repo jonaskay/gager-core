@@ -1,4 +1,5 @@
 require "gager/core/version"
+require "gager/core/client"
 
 module Gager
   module Core
