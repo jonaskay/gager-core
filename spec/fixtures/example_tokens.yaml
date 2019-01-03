@@ -1,0 +1,2 @@
+---
+MyUserId: '{"client_id":"MyClientId","access_token":"123","refresh_token":"123","scope":["MyScope"],"expiration_time_millis":9999999999}'

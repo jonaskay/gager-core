@@ -8,13 +8,21 @@ module Gager
 
       attr_reader :authorization
 
-      def initialize(client_id, client_secret, scope, user_id: "gager", token_store_file: nil)
+      def initialize(user_id, client_id, client_secret, scope, token_store_file: nil)
         auth_id = Google::Auth::ClientId.new(client_id, client_secret)
         if token_store_file
           @token_store = Google::Auth::Stores::FileTokenStore.new(file: token_store_file)
         end
         @auth = Google::Auth::UserAuthorizer.new(auth_id, scope, @token_store)
         @user_id = user_id
+      end
+
+      def authorization
+        @authorization ||= if @token_store.nil?
+          nil
+        else
+          @auth.get_credentials(@user_id)
+        end
       end
 
       def authorization_url

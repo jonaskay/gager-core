@@ -17,7 +17,31 @@ RSpec.shared_examples "generate authorization" do
 end
 
 RSpec.describe Gager::Core::Authorizer do
-  let(:authorizer) { described_class.new("MyClientId", "MyClientSecret", "MyScope") }
+  let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope") }
+
+  describe "#authorization" do
+    subject { authorizer.authorization }
+
+    context "when token_store is nil" do
+      it { is_expected.to be_nil }
+    end
+
+    context "when token_store is not nil" do
+      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope", token_store_file: token_store_file) }
+
+      context "when token_store has credentials" do
+        let(:token_store_file) { "spec/fixtures/example_tokens.yaml" }
+
+        it { is_expected.to be_instance_of(Google::Auth::UserRefreshCredentials) }
+      end
+
+      context "when token_store doesn't have credentials" do
+        let(:token_store_file) { "spec/fixtures/empty.yaml" }
+
+        it { is_expected.to be_nil }
+      end
+    end
+  end
 
   describe "#authorization_url" do
     subject { authorizer.authorization_url }
@@ -78,7 +102,7 @@ RSpec.describe Gager::Core::Authorizer do
 
     context "when token_store is not nil" do
       let(:token_store_file) { "spec/fixtures/tokens.yaml" }
-      let(:authorizer) { described_class.new("MyClientId", "MyClientSecret", "MyScope", token_store_file: token_store_file) }
+      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope", token_store_file: token_store_file) }
 
       include_examples "generate authorization"
 
