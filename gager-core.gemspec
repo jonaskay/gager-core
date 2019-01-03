@@ -43,4 +43,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
 
   spec.add_dependency "googleauth"
+  spec.add_dependency "google-api-client", "~> 0.11"
 end
