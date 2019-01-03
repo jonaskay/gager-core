@@ -5,15 +5,16 @@ module Gager
   module Core
     class Authorizer
       OOB_URI = "urn:ietf:wg:oauth:2.0:oob"
+      SCOPE   = "https://www.googleapis.com/auth/analytics.readonly"
 
       attr_reader :authorization
 
-      def initialize(user_id, client_id, client_secret, scope, token_store_file: nil)
+      def initialize(user_id, client_id, client_secret, token_store_file: nil)
         auth_id = Google::Auth::ClientId.new(client_id, client_secret)
         if token_store_file
           @token_store = Google::Auth::Stores::FileTokenStore.new(file: token_store_file)
         end
-        @auth = Google::Auth::UserAuthorizer.new(auth_id, scope, @token_store)
+        @auth = Google::Auth::UserAuthorizer.new(auth_id, SCOPE, @token_store)
         @user_id = user_id
       end
 

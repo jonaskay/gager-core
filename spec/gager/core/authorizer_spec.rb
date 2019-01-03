@@ -17,7 +17,7 @@ RSpec.shared_examples "generate authorization" do
 end
 
 RSpec.describe Gager::Core::Authorizer do
-  let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope") }
+  let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret") }
 
   describe "#authorization" do
     subject { authorizer.authorization }
@@ -27,7 +27,7 @@ RSpec.describe Gager::Core::Authorizer do
     end
 
     context "when token_store is not nil" do
-      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope", token_store_file: token_store_file) }
+      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", token_store_file: token_store_file) }
 
       context "when token_store has credentials" do
         let(:token_store_file) { "spec/fixtures/example_tokens.yaml" }
@@ -54,7 +54,7 @@ RSpec.describe Gager::Core::Authorizer do
         "&include_granted_scopes=true" +
         "&redirect_uri=urn:ietf:wg:oauth:2.0:oob" +
         "&response_type=code" +
-        "&scope=MyScope"
+        "&scope=https://www.googleapis.com/auth/analytics.readonly"
       )
     }
   end
@@ -102,7 +102,7 @@ RSpec.describe Gager::Core::Authorizer do
 
     context "when token_store is not nil" do
       let(:token_store_file) { "spec/fixtures/tokens.yaml" }
-      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", "MyScope", token_store_file: token_store_file) }
+      let(:authorizer) { described_class.new("MyUserId", "MyClientId", "MyClientSecret", token_store_file: token_store_file) }
 
       include_examples "generate authorization"
 
