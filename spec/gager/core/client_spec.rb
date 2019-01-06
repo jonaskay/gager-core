@@ -5,11 +5,11 @@ RSpec.describe Gager::Core::Client do
     let(:report_requests) {
       [
         {
-          "view_id" => "123",
-          "date_ranges" => [["2015-06-15", "2015-06-30"]],
-          "dimensions" => ["ga:browser"],
-          "metrics" => ["ga:sessions"],
-          "filters_expression" => nil
+          view_id: "MyViewId",
+          date_ranges: [["2015-06-15", "2015-06-30"]],
+          metrics: ["ga:sessions"],
+          dimensions: ["ga:browser"],
+          filters_expression: nil
         }
       ]
     }
@@ -24,7 +24,7 @@ RSpec.describe Gager::Core::Client do
                 "dimensions" => [{"name" => "ga:browser"}],
                 "filtersExpression" => nil,
                 "metrics" => [{ "expression" => "ga:sessions" }],
-                "viewId" => "123"
+                "viewId" => "MyViewId"
               }
             ]
           }.to_json

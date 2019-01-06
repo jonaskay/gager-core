@@ -20,11 +20,11 @@ module Gager
 
       def generate_report_request(attrs)
         API::ReportRequest.new(
-          view_id: attrs["view_id"],
-          date_ranges: attrs["date_ranges"].map { |a| API::DateRange.new(start_date: a[0], end_date: a[1]) },
-          dimensions: attrs["dimensions"].map { |s| API::Dimension.new(name: s) },
-          metrics: attrs["metrics"].map { |s| API::Metric.new(expression: s) },
-          filters_expression: attrs["filters_expression"]
+          view_id: attrs[:view_id],
+          date_ranges: attrs[:date_ranges].map { |a| API::DateRange.new(start_date: a[0], end_date: a[1]) },
+          dimensions: attrs[:dimensions].map { |s| API::Dimension.new(name: s) },
+          metrics: attrs[:metrics].map { |s| API::Metric.new(expression: s) },
+          filters_expression: attrs[:filters_expression]
         )
       end
     end
