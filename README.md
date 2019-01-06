@@ -1,28 +1,19 @@
 # Gager::Core
+[![Build Status](https://travis-ci.com/jonaskay/gager-core.svg?branch=master)](https://travis-ci.com/jonaskay/gager-core)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gager/core`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`Gager::Core` provides the engine for [gager-cli](https://github.com/jonaskay/gager-cli) to retrieve Google Analytics reports using the [Google Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4/).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gager-core'
+gem 'gager-core', github: 'jonaskay/gager-core'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install gager-core
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
@@ -32,7 +23,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gager-core. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jonaskay/gager-core. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
