@@ -2,16 +2,14 @@ RSpec.describe Gager::Core::Client do
   let(:client) { described_class.new({}) }
 
   describe "#get_reports" do
-    let(:report_requests) {
-      [
-        {
-          view_id: "MyViewId",
-          date_ranges: [["2015-06-15", "2015-06-30"]],
-          metrics: ["ga:sessions"],
-          dimensions: ["ga:browser"],
-          filters_expression: nil
-        }
-      ]
+    let(:report_request) {
+      {
+        view_id: "MyViewId",
+        date_ranges: [["2015-06-15", "2015-06-30"]],
+        metrics: ["ga:sessions"],
+        dimensions: ["ga:browser"],
+        filters_expression: nil
+      }
     }
 
     before {
@@ -66,7 +64,7 @@ RSpec.describe Gager::Core::Client do
         )
     }
 
-    subject { client.get_reports(report_requests) }
+    subject { client.get_reports(report_request) }
 
     it { is_expected.to be_instance_of(Google::Apis::AnalyticsreportingV4::GetReportsResponse) }
   end
